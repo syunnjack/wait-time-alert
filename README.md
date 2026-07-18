@@ -8,7 +8,7 @@ Recommended repository name: `wait-time-alert`
 
 ## Domain candidates
 
-First candidate: `waittimealert.jp`
+Confirmed domain: `waittimealert.jp`
 
 Other candidates:
 
