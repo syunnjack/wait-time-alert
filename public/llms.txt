@@ -1,0 +1,7 @@
+# Wait Time Alert
+
+病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。
+
+Notification channels: LINE, X, email, Slack
+Revenue: 施設SaaS, 予約送客, 広告, 法人契約, レポート
+Primary categories: 病院, 役所, 整理券, QR, 民間施設
