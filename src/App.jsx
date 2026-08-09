@@ -6,7 +6,7 @@ const postKey = 'wait-time-alert.posts'
 const alerts = [
   {
     "id": "wait-time-alert-1",
-    "title": "病院 alert seed 1",
+    "title": "名古屋 病院待ち時間通知（例）",
     "area": "名古屋",
     "category": "病院",
     "score": 95,
@@ -25,7 +25,7 @@ const alerts = [
   },
   {
     "id": "wait-time-alert-2",
-    "title": "役所 alert seed 2",
+    "title": "東京 役所待ち時間通知（例）",
     "area": "東京",
     "category": "役所",
     "score": 92,
@@ -45,7 +45,7 @@ const alerts = [
   },
   {
     "id": "wait-time-alert-3",
-    "title": "整理券 alert seed 3",
+    "title": "大阪 整理券通知（例）",
     "area": "大阪",
     "category": "整理券",
     "score": 89,
@@ -66,7 +66,7 @@ const alerts = [
   },
   {
     "id": "wait-time-alert-4",
-    "title": "QR alert seed 4",
+    "title": "静岡 QR待ち時間通知（例）",
     "area": "静岡",
     "category": "QR",
     "score": 86,
@@ -108,7 +108,7 @@ function readArray(key) {
 }
 
 function App() {
-  const [query, setQuery] = useState('名古屋')
+  const [query, setQuery] = useState('')
   const [category, setCategory] = useState('すべて')
   const [saved, setSaved] = useState(() => readArray(saveKey))
   const [posts, setPosts] = useState(() => readArray(postKey))
@@ -140,11 +140,11 @@ function App() {
       <section className="hero">
         <div>
           <p className="eyebrow">病院・役所・民間施設の待ち時間通知</p>
-          <h1>Wait Time Alert</h1>
+          <h1>待ち時間アラート</h1>
           <p className="lead">病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。</p>
         </div>
         <aside className="hero-panel">
-          <span>waittimealert.jp / wait-time-alert</span>
+          <span>waittimealert.jp</span>
           <strong>通知の瞬間に、予約・掲載・クーポン・有料導線へつなげる。</strong>
           <p>LINE、X、メール、Slackを入口に、UGCで鮮度を作りながら収益導線を太くします。</p>
         </aside>
@@ -154,10 +154,10 @@ function App() {
         <select value={category} onChange={(event) => setCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select>
       </section>
       <section className="metrics">
-        <article><span>Alert seeds</span><strong>{alerts.length}</strong></article>
-        <article><span>Channels</span><strong>{channels.length}</strong></article>
-        <article><span>Saved</span><strong>{saved.length}</strong></article>
-        <article><span>UGC</span><strong>{posts.length}</strong></article>
+        <article><span>通知サンプル数</span><strong>{alerts.length}</strong></article>
+        <article><span>通知チャネル数</span><strong>{channels.length}</strong></article>
+        <article><span>保存数</span><strong>{saved.length}</strong></article>
+        <article><span>投稿数</span><strong>{posts.length}</strong></article>
       </section>
       <section className="alert-grid">
         {filtered.map((alert) => (
@@ -174,10 +174,10 @@ function App() {
       </section>
       <section className="split">
         <div className="panel">
-          <h2>技術選定</h2>
-          <article><b>Frontend</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
+          <h2>サービスの仕組み</h2>
+          <article><b>画面構成</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
           <article><b>通知連携</b><p>初期はUI設計、次段階でLINE Messaging API、X API、SendGrid/Mailgun、Slack Incoming Webhooksを接続します。</p></article>
-          <article><b>Data</b><p>MVPは静的seed + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
+          <article><b>データ基盤</b><p>MVPは静的サンプルデータ + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
           <article><b>収益ルート</b><p>{revenuePlans.join(' / ')}</p></article>
         </div>
         <div className="panel">
