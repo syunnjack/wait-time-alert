@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://waittimealert.jp/sitemap.xml
+
+Sitemap: https://wait-time-alert.vercel.app/sitemap.xml
