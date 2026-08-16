@@ -104,6 +104,7 @@ const faqs = [
 ]
 
 function readArray(key) {
+  if (typeof localStorage === 'undefined') return []
   try { return JSON.parse(localStorage.getItem(key)) ?? [] } catch { return [] }
 }
 
