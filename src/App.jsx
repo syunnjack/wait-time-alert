@@ -3,33 +3,34 @@ import './App.css'
 
 const saveKey = 'wait-time-alert.saved'
 const postKey = 'wait-time-alert.posts'
+
+// 掲載しているのは表示例。実際の待ち時間データはまだ接続していないため、
+// 読者が実データと誤解しないよう、タイトルと画面上の注記で「例」と明示する。
 const alerts = [
   {
     "id": "wait-time-alert-1",
-    "title": "名古屋 病院待ち時間通知（例）",
+    "title": "名古屋 病院の順番待ち（表示例）",
     "area": "名古屋",
     "category": "病院",
     "score": 95,
-    "summary": "病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。 病院の条件一致時に通知し、保存、送客、課金へつなげます。",
+    "summary": "診察の順番があと何人かを通知します。院内で待ち続けなくても、近くで用事を済ませてから戻れます。",
     "channels": [
       "LINE",
       "X"
     ],
     "tags": [
       "病院",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "施設SaaS"
+      "順番待ち",
+      "みんなの投稿"
+    ]
   },
   {
     "id": "wait-time-alert-2",
-    "title": "東京 役所待ち時間通知（例）",
+    "title": "東京 役所の窓口待ち（表示例）",
     "area": "東京",
     "category": "役所",
     "score": 92,
-    "summary": "病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。 役所の条件一致時に通知し、保存、送客、課金へつなげます。",
+    "summary": "窓口の待ち人数が減ったときに知らせます。混む時間帯を避けて行きたいときに使えます。",
     "channels": [
       "LINE",
       "X",
@@ -37,19 +38,17 @@ const alerts = [
     ],
     "tags": [
       "役所",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "予約送客"
+      "窓口",
+      "みんなの投稿"
+    ]
   },
   {
     "id": "wait-time-alert-3",
-    "title": "大阪 整理券通知（例）",
+    "title": "大阪 整理券の呼び出し（表示例）",
     "area": "大阪",
     "category": "整理券",
     "score": 89,
-    "summary": "病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。 整理券の条件一致時に通知し、保存、送客、課金へつなげます。",
+    "summary": "整理券の番号が近づいたら通知します。列に並ばず、呼ばれる少し前に戻れます。",
     "channels": [
       "LINE",
       "X",
@@ -58,49 +57,40 @@ const alerts = [
     ],
     "tags": [
       "整理券",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "広告"
+      "呼び出し",
+      "みんなの投稿"
+    ]
   },
   {
     "id": "wait-time-alert-4",
-    "title": "静岡 QR待ち時間通知（例）",
+    "title": "静岡 QR受付の順番（表示例）",
     "area": "静岡",
     "category": "QR",
     "score": 86,
-    "summary": "病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。 QRの条件一致時に通知し、保存、送客、課金へつなげます。",
+    "summary": "QRコードで受け付けた順番の進み具合を通知します。スマホを開き直さなくても状況が分かります。",
     "channels": [
       "LINE",
       "X"
     ],
     "tags": [
-      "QR",
-      "通知",
-      "UGC",
-      "収益導線"
-    ],
-    "revenue": "法人契約"
+      "QR受付",
+      "順番待ち",
+      "みんなの投稿"
+    ]
   }
 ]
-const revenuePlans = [
-  "施設SaaS",
-  "予約送客",
-  "広告",
-  "法人契約",
-  "レポート"
-]
+
 const channels = [
   "LINE",
   "X",
   "メール",
   "Slack"
 ]
+
 const faqs = [
-  ['通知からどう収益化しますか？', '無料通知で接点を作り、条件一致時に予約、掲載、クーポン、有料通知、スポンサー枠へ誘導します。'],
-  ['LINE・X・メール・Slackの使い分けは？', 'LINEは個人の即時通知、Xは拡散、メールは週次まとめ、Slackは店舗や法人運用向けです。'],
-  ['SEO/AIO/LLMOの狙いは？', '地域名、カテゴリ、条件、通知、口コミ、FAQを組み合わせたロングテールページを作ります。'],
+  ['どんな場所に対応していますか？', 'いまは表示例として、病院、役所、整理券、QR受付の4つを載せています。対応する場所はこれから増やしていきます。'],
+  ['通知はどこに届きますか？', 'LINE、X、メール、Slackを予定しています。普段使っているものを選べるようにします。'],
+  ['待ち時間の情報はどこから来ますか？', '施設が公開している情報と、利用した方からの投稿をもとにします。実際の状況とずれることがあるため、大切な予定の前には施設の公式情報もご確認ください。'],
 ]
 
 function readArray(key) {
@@ -139,25 +129,25 @@ function App() {
     <main className="app-shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">病院・役所・民間施設の待ち時間通知</p>
+          <p className="eyebrow">病院・役所・民間施設の順番待ち通知</p>
           <h1>待ち時間アラート</h1>
-          <p className="lead">病院、役所、民間施設、整理券、QR待ち時間を通知し、施設向けSaaSと広告へつなげる。</p>
+          <p className="lead">病院や役所の順番待ちを、スマホの通知でお知らせします。呼ばれる前に気づけるので、待合室に張りついたまま時間を使わずに済みます。</p>
         </div>
         <aside className="hero-panel">
           <span>waittimealert.jp</span>
-          <strong>通知の瞬間に、予約・掲載・クーポン・有料導線へつなげる。</strong>
-          <p>LINE、X、メール、Slackを入口に、UGCで鮮度を作りながら収益導線を太くします。</p>
+          <strong>あと何人か分かれば、外で待てる。</strong>
+          <p>LINE、X、メール、Slackのうち、普段使っているところに通知が届きます。いまは表示例を公開している段階です。</p>
         </aside>
       </section>
       <section className="controls" aria-label="検索条件">
-        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="地域・カテゴリ・通知条件で検索" />
+        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="地域や施設の種類で探す" />
         <select value={category} onChange={(event) => setCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select>
       </section>
       <section className="metrics">
-        <article><span>通知サンプル数</span><strong>{alerts.length}</strong></article>
-        <article><span>通知チャネル数</span><strong>{channels.length}</strong></article>
-        <article><span>保存数</span><strong>{saved.length}</strong></article>
-        <article><span>投稿数</span><strong>{posts.length}</strong></article>
+        <article><span>掲載中の例</span><strong>{alerts.length}</strong></article>
+        <article><span>通知の届け先</span><strong>{channels.length}</strong></article>
+        <article><span>保存した数</span><strong>{saved.length}</strong></article>
+        <article><span>投稿した数</span><strong>{posts.length}</strong></article>
       </section>
       <section className="alert-grid">
         {filtered.map((alert) => (
@@ -167,44 +157,43 @@ function App() {
             <p>{alert.summary}</p>
             <div className="tag-row">{alert.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
             <div className="channel-row">{alert.channels.map((channel) => <span key={channel}>{channel}</span>)}</div>
-            <p className="revenue">収益導線: {alert.revenue}</p>
-            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : '通知導線に保存'}</button>
+            <button type="button" onClick={() => toggleSave(alert.id)}>{saved.includes(alert.id) ? '保存済み' : 'あとで見るために保存'}</button>
           </article>
         ))}
       </section>
       <section className="split">
         <div className="panel">
-          <h2>サービスの仕組み</h2>
-          <article><b>画面構成</b><p>Vite + React 19。静的MVPとして軽く、GitHub Pagesへ展開しやすい構成です。</p></article>
-          <article><b>通知連携</b><p>初期はUI設計、次段階でLINE Messaging API、X API、SendGrid/Mailgun、Slack Incoming Webhooksを接続します。</p></article>
-          <article><b>データ基盤</b><p>MVPは静的サンプルデータ + localStorage。運用時はSupabaseまたはCloudflare D1へ移行します。</p></article>
-          <article><b>収益ルート</b><p>{revenuePlans.join(' / ')}</p></article>
+          <h2>使い方</h2>
+          <article><b>1. 場所を選ぶ</b><p>行く予定の病院や役所、整理券を取った施設を選びます。</p></article>
+          <article><b>2. 知りたい条件を決める</b><p>「あと5人になったら」「窓口が空いたら」など、動き出したいタイミングを決めます。</p></article>
+          <article><b>3. 通知を受け取る</b><p>条件に近づいたら、LINEやメールに届きます。呼ばれる前に戻れます。</p></article>
+          <article><b>いまの状態</b><p>公開しているのは表示例です。通知の受け付けは準備中で、対応する施設から順に始めます。</p></article>
         </div>
         <div className="panel">
-          <h2>UGC・通知リクエスト</h2>
-          <p>現地確認、在庫、空席、価格、閉店、口コミ、通知希望条件を集めて、鮮度と検索ページを増やします。</p>
+          <h2>通知してほしい場所を教えてください</h2>
+          <p>よく行く病院や役所、待ち時間で困った施設を教えてください。要望の多い場所から対応していきます。投稿はこの端末にだけ保存されます。</p>
           <form className="ugc-form" onSubmit={addPost}>
-            <input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="通知リクエスト名" />
-            <input value={form.channel} onChange={(event) => setForm({ ...form, channel: event.target.value })} placeholder="LINE / X / メール / Slack" />
-            <input value={form.memo} onChange={(event) => setForm({ ...form, memo: event.target.value })} placeholder="条件・口コミ・現地メモ" />
-            <button>投稿</button>
+            <input value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="施設名や場所" />
+            <input value={form.channel} onChange={(event) => setForm({ ...form, channel: event.target.value })} placeholder="通知の届け先（LINE / X / メール / Slack）" />
+            <input value={form.memo} onChange={(event) => setForm({ ...form, memo: event.target.value })} placeholder="待ち時間で困ったこと、知りたい条件" />
+            <button>送る</button>
           </form>
           <div className="post-list">
-            {posts.length === 0 && <p className="empty">公開後は通知希望とUGCで鮮度を作ります。</p>}
+            {posts.length === 0 && <p className="empty">まだ投稿はありません。困った場面を教えていただけると、対応する場所を決める手がかりになります。</p>}
             {posts.map((post) => <article key={post.id}><b>{post.title}</b><p>{post.memo}</p><small>{post.channel} / {post.date}</small></article>)}
           </div>
         </div>
       </section>
       <section className="seo-section">
-        <h2>SEO / AIO / LLMO</h2>
+        <h2>これから増やしていくもの</h2>
         <div className="seo-grid">
-          <article><b>地域ページ</b><p>地域名、駅名、施設名ごとに通知ニーズを拾います。</p></article>
-          <article><b>条件ページ</b><p>空き、値下げ、閉店、在庫、混雑、期限など行動直前の検索を狙います。</p></article>
-          <article><b>法人ページ</b><p>掲載、スポンサー、Slack通知、レポート、SaaS契約へつなげます。</p></article>
+          <article><b>地域ごとのページ</b><p>市区町村や駅ごとに、待ち時間を知りたい施設をまとめます。</p></article>
+          <article><b>条件ごとのページ</b><p>「空いている時間帯」「混みにくい曜日」など、行く前に知りたいことをまとめます。</p></article>
+          <article><b>施設の方向けの案内</b><p>待ち時間を掲載したい施設の方へ、掲載方法と運用のご案内を用意します。</p></article>
         </div>
       </section>
       <section className="faq-section">
-        <h2>FAQ</h2>
+        <h2>よくある質問</h2>
         <div className="faq-grid">{faqs.map(([q, a]) => <article key={q}><h3>{q}</h3><p>{a}</p></article>)}</div>
       </section>
     </main>
